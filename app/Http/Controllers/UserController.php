@@ -73,7 +73,11 @@ class UserController extends Controller
         if ((strlen($hash) === 60 && password_verify($password, $hash)) || $hash === md5($password)) {
 
             if($token = $this->getToken($user->uuid, $password)) {
-                return response()->json( array("success"=>true,"data"=>$token) );
+                return response()->json( array(
+                    "success"=>true,
+                    "data"=>$token,
+                    "user"=>$user
+                ) );
             }
         }
 

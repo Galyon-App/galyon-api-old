@@ -57,7 +57,7 @@ class User extends Authenticatable implements JWTSubject
     protected $connection = "erpat";
 
     public function scopeMin($query) {
-        return $query->select('id','uuid','email','password','first_name','last_name');
+        return $query->select('id','uuid','email','password','first_name','last_name', 'is_admin', 'user_type');
     }
 
     public function has_galyon($user_id) {

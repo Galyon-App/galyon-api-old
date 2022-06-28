@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 
 class ErpatController extends Controller
 {
-    public function initialize(Request $request) {
+    public function init(Request $request) {
+        return response()->json( array("success"=>true) );
+    }
+
+    public function setup(Request $request) {
         return response()->json( array("success"=>true) );
     }
 }
