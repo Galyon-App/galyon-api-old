@@ -51,7 +51,19 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims()
     {
-        return [];
+        $role = 'user';
+        if( $this->is_admin ) {
+            $role = 'admin';
+        } else if( $this->user_type === 'client' ) {
+            $role = 'operator';
+        } else if( $this->user_type === 'merchant' ) {
+            $role = 'merchant';
+        }
+
+        return [
+            'uuid' => $this->uuid,
+            'role' => $role
+        ];
     }
 
     protected $connection = "erpat";
@@ -63,7 +75,7 @@ class User extends Authenticatable implements JWTSubject
     public function has_galyon($user_id) {
         $found = $this->where('id', '=', $user_id)
             ->where(function ($query) {
-                $query->where('access_galyon', '=', '1')
+                $query->where('access_madage', '=', '1')
                       ->orWhere('is_admin', '=', '1');
             })
             ->where('status', '=', 'active')

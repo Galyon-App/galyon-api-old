@@ -9,6 +9,8 @@ use App\Models\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Traits\UserTrait;
 use App\Models\Team;
+use Tymon\JWTAuth\PayloadFactory;
+use Tymon\JWTAuth\Facades\JWTFactory;
 
 class UserController extends Controller
 {
@@ -76,7 +78,7 @@ class UserController extends Controller
                 return response()->json( array(
                     "success"=>true,
                     "data"=>$token,
-                    "user"=>$user
+                    "user"=>$user,
                 ) );
             }
         }

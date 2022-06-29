@@ -16,4 +16,9 @@ class Setting extends Model
         return $this->where('setting_name', '=', $setting_name)
             ->select('setting_value')->first();
     }
+
+    public function get_settings_by_type($type_name) {
+        return $this->where('type', '=', $type_name)
+            ->select('setting_name', 'setting_value')->get();
+    }
 }
