@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class PermissionCheck
 {
@@ -16,13 +17,9 @@ class PermissionCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        // if ($request->input('token') !== 'my-secret-token') {
-        //     return redirect('home');
-            // return response()->json( array(
-            //     "success" => false,
-            //     "message" => "Forbidden request!"
-            // ) );
-        // }
+        if ( !auth()->user() ) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
 
         return $next($request);
     }

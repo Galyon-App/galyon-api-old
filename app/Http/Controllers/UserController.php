@@ -18,7 +18,7 @@ class UserController extends Controller
 
     protected $curUser = null;
     public function __construct() {
-        $this->middleware('user.permit');
+        $this->middleware('user.permit')->except('login');
         $this->curUser = auth()->user();
     }
 

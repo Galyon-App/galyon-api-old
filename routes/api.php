@@ -18,6 +18,9 @@ use App\Http\Controllers\SettingController;
 
 Route::group(['middleware' => ['api'], 'prefix' => 'v1/erpat'], function ($router) {
     Route::post('init', [ErpatController::class, 'init']);
+});
+
+Route::group(['middleware' => ['jwt.auth', 'user.permit'], 'prefix' => 'v1/erpat'], function ($router) {
     Route::post('setup', [ErpatController::class, 'setup']);
 });
 

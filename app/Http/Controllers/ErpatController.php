@@ -7,6 +7,10 @@ use App\Models\Setting;
 
 class ErpatController extends Controller
 {
+    public function __construct() {
+
+    }
+
     public function init(Request $request) {
         return response()->json( array("success"=>true) );
     }
